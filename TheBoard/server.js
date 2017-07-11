@@ -1,6 +1,9 @@
 ﻿var http = require("http");
 var express = require("express");
 var app = express();
+
+var controllers = require("./controllers");
+
 //var ejsEngine = require("ejs-locals");
 
 //setup the view engine
@@ -10,11 +13,8 @@ var app = express();
 //app.set("view engine", "ejs");
 
 app.set("view engine", "vash");
-app.get("/", function (req, res) {
-    //res.render("jade/index", { title: "Express + Jade" }); (Haml like syntax)
-    //res.render("ejs/index", { title: "Express + EJS" }); (Web forms like syntax)
-    res.render("index", { title: "Express + Vash" });
-});
+
+controllers.init(app);
 
 //app.get('/', function (req, res) {
 //    res.send("<html><head></head><body><h1>Express App</h1></body></html>")
