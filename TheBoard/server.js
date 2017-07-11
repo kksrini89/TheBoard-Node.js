@@ -14,6 +14,9 @@ var controllers = require("./controllers");
 
 app.set("view engine", "vash");
 
+//set static resources like Images, css
+app.use(express.static(__dirname + "/public"));
+
 controllers.init(app);
 
 //app.get('/', function (req, res) {

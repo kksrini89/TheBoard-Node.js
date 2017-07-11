@@ -13,5 +13,8 @@
     "express": "^4.15.3",
     "jade": "^1.11.0",
     "vash": "^0.12.2"
+  },
+  "devDependencies": {
+    "bower": "^1.8.0"
   }
 }
