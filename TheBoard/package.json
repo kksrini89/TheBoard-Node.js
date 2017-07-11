@@ -1,0 +1,17 @@
+{
+  "name": "the-board",
+  "version": "0.0.0",
+  "description": "TheBoard",
+  "main": "server.js",
+  "author": {
+    "name": "H136552",
+    "email": ""
+  },
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.15.3",
+    "jade": "^1.11.0",
+    "vash": "^0.12.2"
+  }
+}
