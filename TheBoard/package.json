@@ -12,6 +12,7 @@
     "ejs-locals": "^1.0.2",
     "express": "^4.15.3",
     "jade": "^1.11.0",
+    "mongodb": "^2.2.30",
     "vash": "^0.12.2"
   },
   "devDependencies": {
