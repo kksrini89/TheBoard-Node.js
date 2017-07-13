@@ -3,14 +3,45 @@
 
 	 @if(model.error){
 	  <p class="text-error">@model.error</p>
-	 }
+}
 
-	 <div class="row">
-        <div class="list-group col-lg-6">
-          @model.categories.forEach(function (category) {
+<div class="row">
+    <form action="/newCategory" method="post" class="form-inline" role="form">
+        <input type="text" class="form-control" value="" name="categoryName" placeholder="Category Name"/>
+        <input type="submit" value="New Category" class="btn btn-primary" />
+    </form>
+</div>
+
+<div class="row">
+    <div class="list-group col-lg-6">
+        <!-- @model.categories.forEach(function (category) {
             <a href="#" class="list-group-item list-group-item-info"><span class="badge">@(category.notes ? category.notes.length : 0)</span>@category.name</a>
-          })
-        </div>
-      </div>
-   })
+          })-->
+        @if(model.categories.length > 0 ){
+                  <div class="table-responsive">
+                      <table class="table table-bordered table-hover table-stripped">
+                          <thead>
+                              <tr>
+                                  <th>Note</th>
+                                  <th>Author</th>
+                                  <th>Color</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @model.categories.forEach(function(category){
+                                @category.notes.forEach(function(item){
+                                  <tr>
+                                      <td>@item.note</td>
+                                      <td>@item.author</td>
+                                      <td>@item.color</td>
+                                  </tr>
+                              })
+                              })                   
+                          </tbody>
+                      </table>
+                  </div>
+        }
+    </div>
+</div>
+})
 })

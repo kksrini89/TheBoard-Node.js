@@ -8,12 +8,31 @@
             if (err) {
                 console.log("Failed to connect database! " + err);
             } else {
-                db.notes.find({ name: 'People' }).toArray(function (err, results) {
+                db.notes.find().toArray(function (err, results) {
                     if (err)
                         next(err, null);
                     else {
                         next(null, results);
                     }
+                });
+            }
+        });
+    }
+    
+    data.createNewCategory = function (categoryName, next) {
+        database.getDb(function (err, db) {
+            if (err) {
+                console.log("Failed to connect database! " + err);
+            } else {
+                var note = {
+                    name : categoryName,
+                    notes: []
+                };
+                db.notes.insert(note, function (err) { 
+                    if (err)
+                        next(err);
+                    else
+                        next(null);
                 });
             }
         });

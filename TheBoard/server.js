@@ -1,6 +1,7 @@
 ﻿var http = require("http");
 var express = require("express");
 var app = express();
+var body = require('body-parser');
 
 var controllers = require("./controllers");
 
@@ -16,6 +17,9 @@ app.set("view engine", "vash");
 
 //set static resources like Images, css
 app.use(express.static(__dirname + "/public"));
+
+//Opt url encoded
+app.use(body.urlencoded());
 
 controllers.init(app);
 
