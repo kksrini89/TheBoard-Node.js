@@ -3,7 +3,20 @@
     var database = require('./database');
     
     data.getNoteCategories = function (next) {
-        next(null, seedData.initialNotes);
+        //next(null, seedData.initialNotes);
+        database.getDb(function (err, db) {
+            if (err) {
+                console.log("Failed to connect database! " + err);
+            } else {
+                db.notes.find({ name: 'People' }).toArray(function (err, results) {
+                    if (err)
+                        next(err, null);
+                    else {
+                        next(null, results);
+                    }
+                });
+            }
+        });
     }
     
     function seedDatabase() {
@@ -31,7 +44,7 @@
             }
         });
     }
-
+    
     seedDatabase();
 
 })(module.exports);
