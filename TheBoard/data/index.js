@@ -2,6 +2,25 @@
     var seedData = require('./seedData');
     var database = require('./database');
     
+    /*
+     * Get Notes for Category Name - GET
+     * RETURNS - Notes
+     */
+    data.getNotes = function (categoryName, next) {
+        database.getDb(function (err, db) {
+            if (err) {
+                console.log("Failed to connect database! " + err);
+            } else {
+                db.notes.findOne({ name: categoryName }, next);
+            }
+        });
+    }
+    
+    
+    /*
+     * Get Note Categories - GET
+     * RETURNS - Array[categories]
+     */
     data.getNoteCategories = function (next) {
         //next(null, seedData.initialNotes);
         database.getDb(function (err, db) {
@@ -19,6 +38,9 @@
         });
     }
     
+    /*
+     * Creating a New Category - CREATE
+     */
     data.createNewCategory = function (categoryName, next) {
         database.getDb(function (err, db) {
             if (err) {
