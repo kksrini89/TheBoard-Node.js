@@ -2,6 +2,9 @@
 var express = require("express");
 var app = express();
 var body = require('body-parser');
+var flash = require("connect-flash");
+var cookieParser = require("cookie-parser");
+var expressSession = require("express-session");
 
 var controllers = require("./controllers");
 
@@ -18,8 +21,11 @@ app.set("view engine", "vash");
 //set static resources like Images, css
 app.use(express.static(__dirname + "/public"));
 
-//Opt url encoded
+//Opt into services (middlewares)
 app.use(body.urlencoded());
+app.use(cookieParser());
+app.use(expressSession({ secret: "TheBoard" }));
+app.use(flash());
 
 controllers.init(app);
 

@@ -22,17 +22,28 @@
     data.createNewCategory = function (categoryName, next) {
         database.getDb(function (err, db) {
             if (err) {
-                console.log("Failed to connect database! " + err);
+                next(err);
             } else {
-                var note = {
-                    name : categoryName,
-                    notes: []
-                };
-                db.notes.insert(note, function (err) { 
-                    if (err)
-                        next(err);
-                    else
-                        next(null);
+                db.notes.find({ name: categoryName }).count(function (err, count) {
+                    if (err) {
+                        next(err, null);
+                    } else {
+                        if (count !== 0) {
+                            next("The category name already exists ");
+                        } else {
+                            var note = {
+                                name : categoryName,
+                                notes: []
+                            };
+                            db.notes.insert(note, function (err) {
+                                if (err)
+                                    next(err);
+                                else {
+                                    next(null);
+                                }
+                            });
+                        }
+                    }
                 });
             }
         });

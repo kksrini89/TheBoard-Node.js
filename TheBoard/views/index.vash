@@ -5,9 +5,13 @@
 	  <p class="text-error">@model.error</p>
 }
 
-<div class="row">
+<div class="row entryForm">
+    @if(model.newCatError){
+      <span class="text-error">@model.newCatError</span>
+    }
+
     <form action="/newCategory" method="post" class="form-inline" role="form">
-        <input type="text" class="form-control" value="" name="categoryName" placeholder="Category Name"/>
+        <input type="text" class="form-control" value="" name="categoryName" placeholder="Category Name" />
         <input type="submit" value="New Category" class="btn btn-primary" />
     </form>
 </div>

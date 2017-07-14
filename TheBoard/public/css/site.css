@@ -3,3 +3,11 @@
     font: 14px Helvetica, Arial, sans-serif;
     margin-top: 50px;
 }
+
+.entryForm {
+    margin-bottom: 20px;
+}
+
+    .entryForm > .form-inline {
+        padding-top: 20px;
+    }
