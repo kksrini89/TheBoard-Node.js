@@ -9,9 +9,9 @@
         <h4>EJS Engine</h4>
     </li>
     <li>
-        <h4>Vash Engine</h4>       
-        ```javascript
-           app.set("view engine","vash");
+        <h4>Vash Engine</h4>
+        ```
+        app.set("view engine","vash");
         ```
     </li>
 </ul>
