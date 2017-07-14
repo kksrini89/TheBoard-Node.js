@@ -12,6 +12,22 @@
                 res.send(note.notes);
             });
         });
+        app.post('/api/notes/:categoryName', function (req, res) {
+            var categoryName = req.params.categoryName;
+            var noteToInsert = {
+                note: req.body.note,
+                color: req.body.color,
+                author: "Srinivasan"
+            }
+            data.addNote(categoryName, noteToInsert, function (error) {
+                if (error) {
+                    res.send(400, "Failed to add note to data store");
+                } else {
+                    res.set("Content-Type", "application/json");
+                    res.send(201, noteToInsert);
+                }
+            });
+        });
     }
 
 }(module.exports));

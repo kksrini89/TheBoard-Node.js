@@ -23,6 +23,7 @@ app.use(express.static(__dirname + "/public"));
 
 //Opt into services (middlewares)
 app.use(body.urlencoded());
+app.use(body.json());
 app.use(cookieParser());
 app.use(expressSession({ secret: "TheBoard" }));
 app.use(flash());

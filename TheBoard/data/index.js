@@ -71,6 +71,19 @@
         });
     }
     
+    /*
+     * Adding New Note
+     */
+    data.addNote = function (categoryName, noteToInsert, next) {
+        database.getDb(function (err, db) {
+            if (err) {
+                next(err);
+            } else {
+                db.notes.update({ name: categoryName }, { $push: { notes: noteToInsert } }, next);
+            }
+        });
+    }
+    
     function seedDatabase() {
         database.getDb(function (err, db) {
             if (err) {
