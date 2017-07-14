@@ -4,10 +4,15 @@
 <ul>
     <li>
         <h4>Jade Engine</h4>
-        </li>
-        <li>
-            <h4>EJS Engine</h4>
-        </li>
-        <li><h4>Vash Engine</h4></li>
+    </li>
+    <li>
+        <h4>EJS Engine</h4>
+    </li>
+    <li>
+        <h4>Vash Engine</h4>       
+        ```javascript
+           app.set("view engine","vash");
+        ```
+    </li>
 </ul>
 
