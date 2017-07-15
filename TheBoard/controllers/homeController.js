@@ -14,6 +14,12 @@
                 });
             });
         });
+        
+        app.get("/notes/:categoryName", function (req, res) {
+
+            res.render("SPA-Views/notes", { title: req.body.categoryName });
+        });
+        
         app.post('/newCategory', function (req, res) {
             var categoryName = req.body.categoryName;
             data.createNewCategory(categoryName, function (err) {

@@ -2,6 +2,9 @@
     var data = require('../data');
     
     notesController.init = function (app) {
+        /*
+         * GET notes for category name
+         */
         app.get('/api/notes/:categoryName', function (req, res) {
             var categoryName = req.params.categoryName;
             data.getNotes(categoryName, function (err, note) {
@@ -12,6 +15,10 @@
                 res.send(note.notes);
             });
         });
+        
+        /*
+         * Save note for corresponding category name
+         */
         app.post('/api/notes/:categoryName', function (req, res) {
             var categoryName = req.params.categoryName;
             var noteToInsert = {
