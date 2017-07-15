@@ -49,3 +49,8 @@
     right: 20px;
     text-align: right;
 }
+
+/*Create Note*/
+form[name=newNoteForm] {
+    margin-top: 20px;
+}

@@ -16,8 +16,7 @@
         });
         
         app.get("/notes/:categoryName", function (req, res) {
-
-            res.render("SPA-Views/notes", { title: req.body.categoryName });
+            res.render("SPA-Views/notes", { title: req.params.categoryName });
         });
         
         app.post('/newCategory', function (req, res) {
