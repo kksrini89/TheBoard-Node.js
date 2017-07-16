@@ -42,4 +42,9 @@ controllers.init(app);
 //    res.send({ name: "Srinivasan", isActive: true });
 //});
 
-http.createServer(app).listen(3000);
+var server = http.createServer(app);
+server.listen(3000);
+
+var updater = require('./updater/index');
+updater.init(server);
+

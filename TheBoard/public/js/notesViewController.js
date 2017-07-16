@@ -15,12 +15,23 @@
                 console.log(error);
             });
             
-            $scope.saveNote = function() {
+            var socket = io.connect();
+            //socket.on("showThis", function (msg) {
+            //    alert(msg);
+            //});
+            socket.emit('join category', categoryName); //To broadcast the information for particular room
+            socket.on("broadcast note", function (data) {
+                $scope.notes.push(data);
+                $scope.$apply(); //To Force update the model manually
+            });
+            
+            $scope.saveNote = function () {
                 console.log($scope.newNote);
                 notesService.addNewNote(notesUrl, $scope.newNote)
                 .then(function (result) {
                     $scope.notes.push(result.data);
                     $scope.newNote = createNewBlankNote();
+                    socket.emit("newNote", { category : categoryName, note: result.data });
                 }, function (error) {
                     alert(error);
                 });
