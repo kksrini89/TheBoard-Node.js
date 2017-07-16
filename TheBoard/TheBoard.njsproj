@@ -30,6 +30,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="auth\auth.js" />
+    <Compile Include="auth\hasher.js" />
     <Compile Include="controllers\homeController.js" />
     <Compile Include="controllers\index.js" />
     <Compile Include="controllers\notesController.js" />
@@ -54,11 +56,14 @@
     <Content Include="views\jade\index.jade" />
     <Content Include="views\jade\layout.jade" />
     <Content Include="views\layout.vash" />
+    <Content Include="views\login.vash" />
+    <Content Include="views\register.vash" />
     <Content Include="views\SPA-Views\notes.vash" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="controllers\" />
     <Folder Include="data\" />
+    <Folder Include="auth\" />
     <Folder Include="public\" />
     <Folder Include="public\css\" />
     <Folder Include="public\js\" />

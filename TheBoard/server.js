@@ -28,6 +28,9 @@ app.use(cookieParser());
 app.use(expressSession({ secret: "TheBoard" }));
 app.use(flash());
 
+var auth = require('./auth/auth');
+auth.init(app);
+
 controllers.init(app);
 
 //app.get('/', function (req, res) {

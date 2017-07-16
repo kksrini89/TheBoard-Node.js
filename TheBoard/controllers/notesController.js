@@ -1,25 +1,28 @@
 ﻿(function (notesController) {
     var data = require('../data');
+    var auth = require('../auth/auth');
     
     notesController.init = function (app) {
         /*
          * GET notes for category name
          */
-        app.get('/api/notes/:categoryName', function (req, res) {
-            var categoryName = req.params.categoryName;
-            data.getNotes(categoryName, function (err, note) {
-                if (err) {
-                    res.send(400, err);
-                }
-                res.set("Content-Type", "application/json");
-                res.send(note.notes);
-            });
+        app.get('/api/notes/:categoryName', 
+            auth.ensureAPIAuthenticated,
+            function (req, res) {
+                var categoryName = req.params.categoryName;
+                data.getNotes(categoryName, function (err, note) {
+                    if (err) {
+                        res.send(400, err);
+                    }
+                    res.set("Content-Type", "application/json");
+                    res.send(note.notes);
+                });
         });
         
         /*
          * Save note for corresponding category name
          */
-        app.post('/api/notes/:categoryName', function (req, res) {
+        app.post('/api/notes/:categoryName', auth.ensureAPIAuthenticated, function (req, res) {
             var categoryName = req.params.categoryName;
             var noteToInsert = {
                 note: req.body.note,

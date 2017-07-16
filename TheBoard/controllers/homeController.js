@@ -1,5 +1,6 @@
 ﻿(function (homeController) {
     var data = require('../data');
+    var auth = require('../auth/auth');
     
     homeController.init = function (app) {
         app.get("/", function (req, res) {
@@ -10,16 +11,17 @@
                     title: "Express + Vash" , 
                     error: err, 
                     categories: results,
-                    newCatError: req.flash('newCatError')
+                    newCatError: req.flash('newCatError'),
+                    user: req.user
                 });
             });
         });
         
-        app.get("/notes/:categoryName", function (req, res) {
-            res.render("SPA-Views/notes", { title: req.params.categoryName });
+        app.get("/notes/:categoryName", auth.ensureAuthenticated, function (req, res) {
+            res.render("SPA-Views/notes", { title: req.params.categoryName, user: req.user });
         });
         
-        app.post('/newCategory', function (req, res) {
+        app.post('/newCategory', auth.ensureAuthenticated, function (req, res) {
             var categoryName = req.body.categoryName;
             data.createNewCategory(categoryName, function (err) {
                 if (err) {
